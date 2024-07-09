@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise Selector</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Exercise Selector</h1>
+    <div class="container">
+        <label for="body-part">Select a body part:</label>
+        <select id="body-part" onchange="showExercises()">
+            <option value="none" selected disabled hidden>Select an Option</option>
+            <option value="arms">Arms</option>
+            <option value="legs">Legs</option>
+            <option value="chest">Chest</option>
+            <option value="back">Back</option>
+            <option value="abs">Abs</option>
+        </select>
+    </div>
+    <div id="exercise-list" class="exercise-list"></div>
+    <script src="script.js"></script>
+</body>
+</html>
