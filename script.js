@@ -5,19 +5,16 @@ async function showExercises() {
     exerciseList.innerHTML = '';
 
     try {
-        const response = await fetch(`https://wger.de/api/v2/exercise/?muscles=${bodyPart}`);
+        const response = await fetch(`https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`, {
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com',
+                'X-RapidAPI-Key': '251bce7f46msh6a6f2b803c69e1cp183294jsne542e06c39f4'
+            }
+        });
         const data = await response.json();
 
-        const exerciseDetails = await Promise.all(data.results.map(async exercise => {
-            const imageResponse = await fetch(`https://wger.de/api/v2/exerciseimage/?exercise=${exercise.id}`);
-            const imageData = await imageResponse.json();
-            return {
-                ...exercise,
-                image: imageData.results.length ? imageData.results[0].image : 'yo.png'
-            };
-        }));
-
-        exerciseDetails.forEach(exercise => {
+        data.forEach(exercise => {
             const exerciseItem = document.createElement('div');
             exerciseItem.className = 'exercise-item';
 
@@ -27,11 +24,11 @@ async function showExercises() {
 
             const exerciseDescription = document.createElement('div');
             exerciseDescription.className = 'exercise-description';
-            exerciseDescription.textContent = exercise.description.replace(/(<([^>]+)>)/gi, "");
+            exerciseDescription.textContent = `Equipment: ${exercise.equipment}`;
 
             const exerciseImage = document.createElement('img');
             exerciseImage.className = 'exercise-image';
-            exerciseImage.src = exercise.image;
+            exerciseImage.src = exercise.gifUrl;
             exerciseImage.alt = exercise.name;
 
             exerciseItem.appendChild(exerciseTitle);
