@@ -8,18 +8,20 @@
 </head>
 <body>
     <h1>Exercise Selector</h1>
-    <div class="container">
-        <label for="body-part">Select a body part:</label>
-        <select id="body-part" onchange="showExercises()">
-            <option value="none" selected disabled hidden>Select an Option</option>
-            <option value="2">Arms</option>
-            <option value="10">Legs</option>
-            <option value="11">Chest</option>
-            <option value="12">Back</option>
-            <option value="6">Abs</option>
-        </select>
-    </div>
-    <div id="exercise-list" class="exercise-list"></div>
+    <label for="body-part">Select a body part:</label>
+    <select id="body-part" onchange="showExercises()">
+        <option>Select a body part</option>
+        <option value="chest">Chest</option>
+        <option value="back">Back</option>
+        <option value="legs">Legs</option>
+        <option value="shoulders">Shoulders</option>
+        <option value="biceps">Biceps</option>
+        <option value="triceps">Triceps</option>
+        <option value="abs">Abs</option>
+    </select>
+    <div id="loader" class="loader"></div>
+
+    <div id="exercise-list"></div>
     <script src="script.js"></script>
 </body>
 </html>
